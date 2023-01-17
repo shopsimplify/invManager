@@ -8,6 +8,8 @@ public class InvManagerApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InvManagerApplication.class, args);
+
+		
 	}
 
 }
