@@ -1,6 +1,6 @@
 package com.shopesimple.invManager.Controllers;
 
-public class login {
+public class crud {
     public void getdata() {
         System.out.println("helooooooo");
     }

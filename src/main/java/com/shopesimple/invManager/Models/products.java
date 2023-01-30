@@ -1,5 +1,5 @@
 package com.shopesimple.invManager.Models;
 
-public class loginUsers {
+public class products {
     
 }
