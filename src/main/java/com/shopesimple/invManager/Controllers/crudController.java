@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.shopesimple.invManager.Models.users;
@@ -36,6 +37,13 @@ public class crudController {
     public Optional<users> userFind(@PathVariable String username){
        return repo.findById(username);
     }
+//For update users *********************************************pending
+@PutMapping("/updateUser/{username}")
+public String updateUser(@PathVariable String username) {
+     
+    return "Updated";
+}
+
 
 // For user delete******************************************************
       @DeleteMapping("deleteUser/{username}")
