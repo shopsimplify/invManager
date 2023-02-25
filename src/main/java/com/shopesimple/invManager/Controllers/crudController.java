@@ -27,23 +27,24 @@ public class crudController {
     }
 
 // For fetch all users****************************************************
-    @GetMapping("/allUser")
+    @GetMapping("/allUsers")
     public List<users> userList(){
         return repo.findAll();
     }
 
-// For user update*******************************************************
+// For user find*******************************************************
      @GetMapping("/userFind/{username}")
     public Optional<users> userFind(@PathVariable String username){
        return repo.findById(username);
     }
 //For update users *********************************************pending
 @PutMapping("/updateUser/{username}")
-public String updateUser(@PathVariable String username) {
-     
-    return "Updated";
+public String updateUser(users user) {
+     users existUser = repo.findById(user.getUsername()).get();
+     existUser.setPassword(user.getPassword());
+     repo.save(existUser);
+     return "Updated!!";
 }
-
 
 // For user delete******************************************************
       @DeleteMapping("deleteUser/{username}")
