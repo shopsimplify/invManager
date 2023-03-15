@@ -37,7 +37,6 @@ public class crudService {
     return repo.findById(username);
   }
 
-
 // Update user***************************************************************
     public  void userUpdate(users user,String username)
     {  
