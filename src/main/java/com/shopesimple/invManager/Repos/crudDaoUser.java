@@ -4,7 +4,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import com.shopesimple.invManager.Entity.users;
 
-public interface crudDao extends MongoRepository<users,String> {
+public interface crudDaoUser extends MongoRepository<users,String> {
     // public List<users> findAll();
     
    

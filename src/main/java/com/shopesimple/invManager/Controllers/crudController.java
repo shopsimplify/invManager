@@ -11,24 +11,23 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.shopesimple.invManager.Entity.users;
-import com.shopesimple.invManager.Service.crudService;
-
+import com.shopesimple.invManager.Service.crudServiceUser;
 
 @RestController
 public class crudController {
     @Autowired
-    crudService crudservice;
+    crudServiceUser crudServiceUser;
     
     // For fetch all users****************************************************
         @GetMapping("/allUsers")
         public List<users> userList(){
-            return crudservice.findAll();
+            return crudServiceUser.findAll();
         }
     
     // For add user**************************************************
     @PostMapping("/addUser")
     public String addUser(@RequestBody users user){
-        crudservice.addUser(user);    
+        crudServiceUser.addUser(user);    
         return "user added!!";
     }
 
@@ -36,12 +35,12 @@ public class crudController {
 // For user find*******************************************************
      @GetMapping("/userFind/{username}")
     public Optional<users> userFind(@PathVariable String username){
-       return crudservice.findUser(username);
+       return crudServiceUser.findUser(username);
     }
 //For update users *********************************************pending
 @PutMapping("/updateUser/{username}")
 public String updateUser(@RequestBody users user, @PathVariable("username") String username) {
-         crudservice.userUpdate(user, username);
+         crudServiceUser.userUpdate(user, username);
      return "Updated!!";
      
 }
@@ -49,7 +48,7 @@ public String updateUser(@RequestBody users user, @PathVariable("username") Stri
 // For user delete******************************************************
       @DeleteMapping("deleteUser/{username}")
        public String deleteUser(@PathVariable String username){
-         crudservice.deleteUser(username);
+         crudServiceUser.deleteUser(username);
         return "user deleted "+username;
     }
 

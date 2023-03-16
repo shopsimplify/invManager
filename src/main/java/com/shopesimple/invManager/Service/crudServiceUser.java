@@ -6,13 +6,13 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.shopesimple.invManager.Entity.users;
-import com.shopesimple.invManager.Repos.crudDao;
+import com.shopesimple.invManager.Repos.crudDaoUser;
 
 
 @Service
-public class crudService {
+public class crudServiceUser {
     @Autowired
-    private crudDao repo;
+    private crudDaoUser repo;
 
 
 // All users**************************************************************************
