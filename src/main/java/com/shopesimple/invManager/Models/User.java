@@ -1,16 +1,16 @@
 package com.shopesimple.invManager.Models;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document("userlist")
-public class users {
+
+
+
+public class User {
     @Id
     String username;
-    
     String password;
     
-    public users(String username, String password) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
     }

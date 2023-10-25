@@ -1,0 +1,4 @@
+package com.shopesimple.invManager.Models;
+
+public class BaseModel {
+}

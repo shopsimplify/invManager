@@ -1,6 +1,13 @@
 package com.shopesimple.invManager.Controllers;
 
-public class crud {
+
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class LoginPage {
+
+    @RequestMapping("/login")
     public void getdata() {
         System.out.println("helooooooo");
     }
