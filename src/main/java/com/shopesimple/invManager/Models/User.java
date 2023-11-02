@@ -1,38 +1,35 @@
 package com.shopesimple.invManager.Models;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
+import org.hibernate.annotations.NotFound;
 import org.springframework.data.annotation.Id;
 
 
 
 
-public class User {
-    @Id
-    String username;
-    String password;
+@Getter
+@Setter
+@Entity
+@NoArgsConstructor
+public class User extends BaseModel{
+    @NotNull
+    @Column(unique = true)
+    private String username;
+    @NotNull
+    @Column(unique = true)
+    private String emailId;
+    @NotNull
+    private String password;
     
-    public User(String username, String password) {
+    public User(String username,String emailId, String password) {
         this.username = username;
         this.password = password;
+        this.emailId = emailId;
     }
-
-
-    public String getUsername() {
-        return username;
-    }
-    public void setUsername(String username) {
-        this.username = username;
-    }
-    public String getPassword() {
-        return password;
-    }
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-   
-
-
-
-
-
 }
