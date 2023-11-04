@@ -37,7 +37,8 @@ public class crudController {
     public Optional<users> userFind(@PathVariable String username){
        return crudServiceUser.findUser(username);
     }
-//For update users *********************************************pending
+
+    //For update users *********************************************pending
 @PutMapping("/updateUser/{username}")
 public String updateUser(@RequestBody users user, @PathVariable("username") String username) {
          crudServiceUser.userUpdate(user, username);
