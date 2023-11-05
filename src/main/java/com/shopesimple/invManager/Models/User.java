@@ -1,5 +1,4 @@
 package com.shopesimple.invManager.Models;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
@@ -9,8 +8,6 @@ import lombok.NonNull;
 import lombok.Setter;
 import org.hibernate.annotations.NotFound;
 import org.springframework.data.annotation.Id;
-
-
 
 @Getter
 @Setter

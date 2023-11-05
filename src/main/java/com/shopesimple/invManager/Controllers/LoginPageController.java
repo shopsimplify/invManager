@@ -19,15 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginPageController {
     private  final LoginPageService loginPageService;
-
     public LoginPageController(LoginPageService loginPageService) {
         this.loginPageService = loginPageService;
     }
-
-
-
-
-
     @PostMapping("/signup")
      public ResponseEntity<LoginDtoResponse> getLoginPage(@RequestBody LoginDtoRequest request) throws UsernameAlreadyExistsException {
         System.out.println("In Controller");
