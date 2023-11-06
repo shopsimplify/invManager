@@ -12,7 +12,6 @@ import org.springframework.data.annotation.Id;
 @Getter
 @Setter
 @Entity
-@NoArgsConstructor
 public class User extends BaseModel{
     @NotNull
     @Column(unique = true)
@@ -22,10 +21,4 @@ public class User extends BaseModel{
     private String emailId;
     @NotNull
     private String password;
-    
-    public User(String username,String emailId, String password) {
-        this.username = username;
-        this.password = password;
-        this.emailId = emailId;
-    }
 }
