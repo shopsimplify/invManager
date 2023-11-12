@@ -4,7 +4,7 @@ import com.shopesimple.invManager.DTO.LoginDtoResponse;
 import com.shopesimple.invManager.Exception.UsernameAlreadyExistsException;
 import com.shopesimple.invManager.Models.User;
 import com.shopesimple.invManager.Service.LoginPageService;
-import org.springframework.beans.factory.annotation.Autowired;
+import jakarta.annotation.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ public class LoginPageController {
         this.loginPageService = loginPageService;
     }
     @PostMapping("/signup")
-     public ResponseEntity<LoginDtoResponse> getLoginPage(@RequestBody LoginDtoRequest request) throws UsernameAlreadyExistsException {
+     public ResponseEntity<Resource> getLoginPage(@RequestBody LoginDtoRequest request,Resource resource) throws UsernameAlreadyExistsException {
         System.out.println("In Controller");
         User user=loginPageService.signUpUser(
                 request.getUsername(),
@@ -29,7 +29,8 @@ public class LoginPageController {
         LoginDtoResponse loginDtoResponse = new LoginDtoResponse();
         loginDtoResponse.setEmailId(user.getEmailId());
 
-       return null;
+
+       return ResponseEntity.status(HttpStatus.CREATED).body(resource);
     }
 
 }
