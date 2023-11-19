@@ -10,6 +10,6 @@ import lombok.Setter;
 public class Product extends BaseModel{
     private String prodName;
     private String Description;
-    private Category category;
+    private String category;
 
 }
