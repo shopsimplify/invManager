@@ -12,7 +12,6 @@ public interface SignupRepo extends JpaRepository<User,Long> {
 
     Optional<User> findByEmailId(String emailId);
 
-   User save(User user);
 
 
 

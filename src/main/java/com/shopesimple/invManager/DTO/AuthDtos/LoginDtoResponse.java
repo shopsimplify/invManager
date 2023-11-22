@@ -1,4 +1,4 @@
-package com.shopesimple.invManager.DTO;
+package com.shopesimple.invManager.DTO.AuthDtos;
 
 import lombok.Getter;
 import lombok.Setter;
