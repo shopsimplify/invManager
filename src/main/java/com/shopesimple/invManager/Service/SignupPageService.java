@@ -1,19 +1,18 @@
 package com.shopesimple.invManager.Service;
 
 
-import com.shopesimple.invManager.DTO.LoginDtoRequest;
 import com.shopesimple.invManager.Exception.UsernameAlreadyExistsException;
 import com.shopesimple.invManager.Models.User;
-import com.shopesimple.invManager.Repos.LoginRepo;
+import com.shopesimple.invManager.Repos.SignupRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-public class LoginPageService {
-    private final LoginRepo loginRepo;
+public class SignupPageService {
+    private final SignupRepo loginRepo;
 
-    public LoginPageService(LoginRepo loginRepo) {
+    public SignupPageService(SignupRepo loginRepo) {
         this.loginRepo = loginRepo;
     }
 
