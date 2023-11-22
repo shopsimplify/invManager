@@ -1,4 +1,4 @@
-package com.shopesimple.invManager.Repos;
+package com.shopesimple.invManager.Repos.Auth;
 
 import com.shopesimple.invManager.Models.User;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,10 +9,6 @@ import java.util.Optional;
 
 @Repository
 public interface SignupRepo extends JpaRepository<User,Long> {
-
     Optional<User> findByEmailId(String emailId);
-
-
-
 
 }

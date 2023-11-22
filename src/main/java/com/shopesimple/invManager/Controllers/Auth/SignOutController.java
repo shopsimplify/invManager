@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
-public class SignOut {
+public class SignOutController {
 
     public void signOutUser(){
 

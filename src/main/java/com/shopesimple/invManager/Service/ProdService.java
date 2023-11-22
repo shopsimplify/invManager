@@ -1,11 +1,8 @@
 package com.shopesimple.invManager.Service;
-
-
 import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Repos.ProdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 @Service
 public class ProdService {
     private final ProdRepo prodRepo;

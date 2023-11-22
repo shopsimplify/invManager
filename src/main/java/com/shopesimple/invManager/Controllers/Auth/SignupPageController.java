@@ -1,9 +1,9 @@
 package com.shopesimple.invManager.Controllers.Auth;
-import com.shopesimple.invManager.DTO.AuthDtos.LoginDtoRequest;
-import com.shopesimple.invManager.DTO.AuthDtos.LoginDtoResponse;
+import com.shopesimple.invManager.DTO.AuthDtos.SignupDtoRequest;
+import com.shopesimple.invManager.DTO.AuthDtos.SignupDtoResponse;
 import com.shopesimple.invManager.Exception.UsernameAlreadyExistsException;
 import com.shopesimple.invManager.Models.User;
-import com.shopesimple.invManager.Service.SignupPageService;
+import com.shopesimple.invManager.Service.Auth.SignupPageService;
 import jakarta.annotation.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,9 @@ public class SignupPageController {
         this.loginPageService = loginPageService;
     }
 
+//    create new user if that user not exist in the db ******************************************
     @PostMapping("/signup")
-     public ResponseEntity<LoginDtoResponse> signUpUser(@RequestBody LoginDtoRequest request, Resource resource) throws UsernameAlreadyExistsException {
+     public ResponseEntity<SignupDtoResponse> signUpUser(@RequestBody SignupDtoRequest request, Resource resource) throws UsernameAlreadyExistsException {
 //        System.out.println("In Controller");
 //        Call the service for signup
         User user=loginPageService.signUpUser(
@@ -30,7 +31,7 @@ public class SignupPageController {
                 request.getPassword(),
                 request.getFullName()
                 );
-        LoginDtoResponse loginDtoResponse = new LoginDtoResponse();
+        SignupDtoResponse loginDtoResponse = new SignupDtoResponse();
         loginDtoResponse.setEmailId(user.getEmailId());
 
 //Return the mail id is register on Db********************************************
