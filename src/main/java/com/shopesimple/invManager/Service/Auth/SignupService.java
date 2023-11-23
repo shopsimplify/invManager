@@ -7,11 +7,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 @Service
-public class SignupPageService implements SignupInterface{
+public class SignupService implements SignupInterface{
     private final SignupRepo loginRepo;
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public SignupPageService(SignupRepo loginRepo) {
+    public SignupService(SignupRepo loginRepo) {
         this.loginRepo = loginRepo;
         this.bCryptPasswordEncoder=new BCryptPasswordEncoder();
     }

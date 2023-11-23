@@ -3,7 +3,7 @@ import com.shopesimple.invManager.DTO.AuthDtos.SignupDtoRequest;
 import com.shopesimple.invManager.DTO.AuthDtos.SignupDtoResponse;
 import com.shopesimple.invManager.Exception.UsernameAlreadyExistsException;
 import com.shopesimple.invManager.Models.User;
-import com.shopesimple.invManager.Service.Auth.SignupPageService;
+import com.shopesimple.invManager.Service.Auth.SignupService;
 import jakarta.annotation.Resource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/home")
-public class SignupPageController {
-    private  final SignupPageService loginPageService;
-    public SignupPageController(SignupPageService loginPageService) {
-        this.loginPageService = loginPageService;
+public class SignupController {
+    private  final SignupService signupService;
+    public SignupController(SignupService loginPageService) {
+        this.signupService = loginPageService;
     }
 
 //    create new user if that user not exist in the db ******************************************
@@ -25,7 +25,7 @@ public class SignupPageController {
      public ResponseEntity<SignupDtoResponse> signUpUser(@RequestBody SignupDtoRequest request, Resource resource) throws UsernameAlreadyExistsException {
 //        System.out.println("In Controller");
 //        Call the service for signup
-        User user=loginPageService.signUpUser(
+        User user= signupService.signUpUser(
                 request.getUsername(),
                 request.getEmailId(),
                 request.getPassword(),
