@@ -10,8 +10,6 @@ import lombok.Setter;
 @Entity
 public class Inventory extends BaseModel{
   @ManyToOne
-  private User user;
-  @ManyToOne
   private Product product;
 
 }
