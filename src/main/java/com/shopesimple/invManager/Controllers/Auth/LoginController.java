@@ -7,6 +7,7 @@ import com.shopesimple.invManager.Exception.NoUserExist;
 import com.shopesimple.invManager.Exception.WrongPassword;
 import com.shopesimple.invManager.Models.User;
 import com.shopesimple.invManager.Service.Auth.LoginService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,12 +21,13 @@ import java.util.Optional;
 public class LoginController {
   private final LoginService loginService;
 
+  @Autowired
     public LoginController(LoginService loginService) {
         this.loginService = loginService;
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> loginUser(@RequestBody LoginRequestDto request) throws NoUserExist, WrongPassword {
+    public ResponseEntity<UserDto> loginUser(@RequestBody LoginRequestDto request) throws NoUserExist, WrongPassword {
        return loginService.login(request.getEmailId(),request.getPassword());
     }
 }

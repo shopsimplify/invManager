@@ -7,5 +7,5 @@ import com.shopesimple.invManager.Models.User;
 import org.springframework.http.ResponseEntity;
 
 public interface LoginInterface {
-    public ResponseEntity<String> login(String emailId, String password) throws NoUserExist, WrongPassword;
+    public ResponseEntity<UserDto> login(String emailId, String password) throws NoUserExist, WrongPassword;
 }

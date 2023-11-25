@@ -30,8 +30,6 @@ public String generateToken(String emailId){
             .compact();
 }
 
-
-
  //***************************************************
     private Claims extractClaims(String token){
         return Jwts.parserBuilder().setSigningKey(secret).build().parseClaimsJws(token).getBody();
