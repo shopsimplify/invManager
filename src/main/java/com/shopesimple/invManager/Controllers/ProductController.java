@@ -24,6 +24,7 @@ public class ProductController {
 
           ProductResponseDto productResponseDto = new ProductResponseDto();
           productResponseDto.setProdName(prodName);
+
         return productResponseDto;
     }
 }
