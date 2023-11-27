@@ -3,8 +3,11 @@ import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Repos.ProdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 @Service
-public class ProdService {
+public class ProdService implements ProductServiceInterface{
     private final ProdRepo prodRepo;
 
     @Autowired
@@ -19,6 +22,12 @@ public class ProdService {
         product.setCategory(category);
 
         prodRepo.save(product);
+    }
+
+    public List<Product> getProducts(String token){
+
+
+        return null;
     }
 
 }
