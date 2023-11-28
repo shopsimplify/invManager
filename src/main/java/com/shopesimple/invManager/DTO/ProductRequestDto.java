@@ -8,6 +8,6 @@ import lombok.Setter;
 @Setter
 public class ProductRequestDto {
     private String prodName;
-    private String Description;
+    private String description;
     private String category;
 }

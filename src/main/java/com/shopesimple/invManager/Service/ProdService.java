@@ -5,11 +5,14 @@ import com.shopesimple.invManager.Repos.ProdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 11f9217f5d662a559173fadf264bc6f7527e8f77
 import java.util.List;
 
 @Service
-public class ProdService {
+public class ProdService implements ProductServiceInterface{
     private final ProdRepo prodRepo;
 
     @Autowired
@@ -26,6 +29,7 @@ public class ProdService {
         prodRepo.save(product);
     }
 
+<<<<<<< HEAD
     public List<ProductListDto> getAllProducts(){
             List<Product> productList = prodRepo.findAll();
             ProductListDto productListDto = new ProductListDto();
@@ -38,6 +42,12 @@ public class ProdService {
                productListDtos.add(productListDto);
             }
         return productListDtos;
+=======
+    public List<Product> getProducts(String token){
+
+
+        return null;
+>>>>>>> 11f9217f5d662a559173fadf264bc6f7527e8f77
     }
 
 }
