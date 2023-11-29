@@ -1,23 +1,26 @@
 package com.shopesimple.invManager.ThirdParty.Security;
-
-import com.shopesimple.invManager.DTO.ProductListDto;
+import com.shopesimple.invManager.DTO.ValidTokenRequestDto;
+import com.shopesimple.invManager.DTO.ValidateTokenResponseDto;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-
+@Component
 public class AuthClient {
-    private final RestTemplate restTemplate;
 
-    public AuthClient(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate;
-    }
-
-
-    public void valid(){
+    public ValidateTokenResponseDto valid(String token){
+        ValidTokenRequestDto request = new ValidTokenRequestDto();
+        request.setToken(token);
         String authServer = "http://localhost:8081/auth/validate";
+        RestTemplate restTemplate = new RestTemplate();
 
-        restTemplate.getForEntity(
+        ResponseEntity<ValidateTokenResponseDto> validateTokenResponseDto = restTemplate.postForEntity(
                 authServer,
-                ProductListDto[].class
+                request,
+                ValidateTokenResponseDto.class
         );
+
+    return validateTokenResponseDto.getBody();
+
     }
 
 }
