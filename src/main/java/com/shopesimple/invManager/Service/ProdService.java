@@ -5,10 +5,7 @@ import com.shopesimple.invManager.Repos.ProdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
-=======
->>>>>>> 11f9217f5d662a559173fadf264bc6f7527e8f77
 import java.util.List;
 
 @Service
@@ -29,25 +26,21 @@ public class ProdService implements ProductServiceInterface{
         prodRepo.save(product);
     }
 
-<<<<<<< HEAD
-    public List<ProductListDto> getAllProducts(){
-            List<Product> productList = prodRepo.findAll();
-            ProductListDto productListDto = new ProductListDto();
-            List<ProductListDto> productListDtos = new ArrayList<>();
+    @Override
+    public List<ProductListDto> getProducts() {
+        List<Product> productList = prodRepo.findAll();
+        ProductListDto productListDto = new ProductListDto();
+        List<ProductListDto> productListDtos = new ArrayList<>();
 
-            for(Product product:productList){
-               productListDto.setProdName(product.getProdName());
-               productListDto.setDescription(product.getDescription());
-               productListDto.setCategory(product.getCategory());
-               productListDtos.add(productListDto);
-            }
+        for(Product product:productList){
+            productListDto.setProdName(product.getProdName());
+            productListDto.setDescription(product.getDescription());
+            productListDto.setCategory(product.getCategory());
+            productListDtos.add(productListDto);
+        }
         return productListDtos;
-=======
-    public List<Product> getProducts(String token){
-
-
-        return null;
->>>>>>> 11f9217f5d662a559173fadf264bc6f7527e8f77
     }
+
+
 
 }

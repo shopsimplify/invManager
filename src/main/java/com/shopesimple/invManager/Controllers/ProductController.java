@@ -2,13 +2,14 @@ package com.shopesimple.invManager.Controllers;
 import com.shopesimple.invManager.DTO.ProductListDto;
 import com.shopesimple.invManager.DTO.ProductRequestDto;
 import com.shopesimple.invManager.DTO.ProductResponseDto;
-import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Service.ProdService;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
+
 import java.util.List;
 
 @RestController
@@ -17,7 +18,7 @@ public class ProductController {
     private final ProdService prodService;
 
     @Autowired
-    public ProductController(ProdService prodService) {
+    public ProductController(ProdService prodService, RestTemplate restTemplate) {
         this.prodService = prodService;
     }
 
@@ -40,7 +41,10 @@ public class ProductController {
            if(token==null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
-        List<ProductListDto> productList = prodService.getAllProducts();
+
+
+
+        List<ProductListDto> productList = prodService.getProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
 
     }
