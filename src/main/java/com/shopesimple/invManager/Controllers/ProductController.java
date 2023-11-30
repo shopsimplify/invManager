@@ -37,8 +37,7 @@ public class ProductController {
     }
 //Fetch all products from DB ********************************************************************
     @GetMapping("/get_products")
-    public ResponseEntity<List<ProductListDto>> getAllProd(@Nullable @RequestHeader("AUTH_TOKEN")String token,
-                                                           @Nullable @RequestHeader("USER_ID") Long userId){
+    public ResponseEntity<List<ProductListDto>> getAllProd(@Nullable @RequestHeader("AUTH_TOKEN")String token,@Nullable @RequestHeader("USER_ID") Long userId){
 //  Checking token in DB ************************************
            if(token==null||userId==null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
