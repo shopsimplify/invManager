@@ -7,9 +7,10 @@ import org.springframework.web.client.RestTemplate;
 @Component
 public class AuthClient {
 
-    public ValidateTokenResponseDto valid(String token){
+    public ValidateTokenResponseDto valid(String token,Long userId){
         ValidTokenRequestDto request = new ValidTokenRequestDto();
         request.setToken(token);
+        request.setUserId(userId);
         String authServer = "http://localhost:8081/auth/validate";
         RestTemplate restTemplate = new RestTemplate();
 

@@ -1,10 +1,6 @@
 package com.shopesimple.invManager.Controllers;
-import com.shopesimple.invManager.DTO.ProductListDto;
-import com.shopesimple.invManager.DTO.ProductRequestDto;
-import com.shopesimple.invManager.DTO.ProductResponseDto;
-import com.shopesimple.invManager.DTO.ValidateTokenResponseDto;
-import com.shopesimple.invManager.DTO.SessionStatus;
-import com.shopesimple.invManager.Service.ProdService;
+import com.shopesimple.invManager.DTO.*;
+import com.shopesimple.invManager.Service.ProductService;
 import com.shopesimple.invManager.ThirdParty.Security.AuthClient;
 import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +13,11 @@ import java.util.List;
 @RestController
 @RequestMapping("/dashboard/product")
 public class ProductController {
-    private final ProdService prodService;
+    private final ProductService prodService;
    private final AuthClient authClient;
 
     @Autowired
-    public ProductController(ProdService prodService, AuthClient authClient) {
+    public ProductController(ProductService prodService, AuthClient authClient) {
         this.prodService = prodService;
         this.authClient = authClient;
     }
@@ -41,16 +37,26 @@ public class ProductController {
     }
 //Fetch all products from DB ********************************************************************
     @GetMapping("/get_products")
-    public ResponseEntity<List<ProductListDto>> getAllProd(@Nullable @RequestHeader("AUTH_TOKEN")String token){
-//         Checking token in DB ************************************
-           if(token==null)
+    public ResponseEntity<List<ProductListDto>> getAllProd(@Nullable @RequestHeader("AUTH_TOKEN")String token,
+                                                           @Nullable @RequestHeader("USER_ID") Long userId){
+//  Checking token in DB ************************************
+           if(token==null||userId==null)
             return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 //Checking token is valid **********************************************
-        ValidateTokenResponseDto response = authClient.valid(token);
-            if(response.getSessionStatus().equals(SessionStatus.INVALID))
+        ValidateTokenResponseDto response = authClient.valid(token,userId);
+
+        if(response.getSessionStatus().equals(SessionStatus.INVALID))
                 return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
 // Checking the user have the permissions ********************************
+       boolean isAdmin = false;
+       for(Role role:response.getUserDto().getRoles()){
+           if (role.getRoleName().equals("ADMIN")) {
+               isAdmin = true;
+           }
+       }
+          if(!isAdmin)
+           return  new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
 
         List<ProductListDto> productList = prodService.getProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);

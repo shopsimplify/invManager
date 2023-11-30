@@ -1,7 +1,7 @@
 package com.shopesimple.invManager.Service;
 import com.shopesimple.invManager.DTO.ProductListDto;
 import com.shopesimple.invManager.Models.Product;
-import com.shopesimple.invManager.Repos.ProdRepo;
+import com.shopesimple.invManager.Repos.ProductRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,12 +9,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class ProdService implements ProductServiceInterface{
-    private final ProdRepo prodRepo;
+public class ProductService implements ProductServiceInterface{
+    private final ProductRepo productRepo;
 
     @Autowired
-    public ProdService(ProdRepo prodRepo) {
-        this.prodRepo = prodRepo;
+    public ProductService(ProductRepo prodRepo) {
+        this.productRepo = prodRepo;
     }
 
     public void addProd(String prodName, String prodDescription, String category){
@@ -23,16 +23,17 @@ public class ProdService implements ProductServiceInterface{
         product.setDescription(prodDescription);
         product.setCategory(category);
 
-        prodRepo.save(product);
+        productRepo.save(product);
     }
 
     @Override
     public List<ProductListDto> getProducts() {
-        List<Product> productList = prodRepo.findAll();
-        ProductListDto productListDto = new ProductListDto();
+        List<Product> productList = productRepo.findAll();
+        ProductListDto productListDto ;
         List<ProductListDto> productListDtos = new ArrayList<>();
 
         for(Product product:productList){
+            productListDto = new ProductListDto();
             productListDto.setProdName(product.getProdName());
             productListDto.setDescription(product.getDescription());
             productListDto.setCategory(product.getCategory());
