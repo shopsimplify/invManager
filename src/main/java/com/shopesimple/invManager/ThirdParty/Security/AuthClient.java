@@ -4,9 +4,8 @@ import com.shopesimple.invManager.DTO.ValidateTokenResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
-@Component
+//@Component
 public class AuthClient {
-
     public ValidateTokenResponseDto valid(String token,Long userId){
         ValidTokenRequestDto request = new ValidTokenRequestDto();
         request.setToken(token);
@@ -19,9 +18,7 @@ public class AuthClient {
                 request,
                 ValidateTokenResponseDto.class
         );
-
     return validateTokenResponseDto.getBody();
-
     }
 
 }
