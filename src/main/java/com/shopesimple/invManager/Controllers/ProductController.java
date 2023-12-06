@@ -14,13 +14,10 @@ import java.util.List;
 @RequestMapping("/dashboard/product")
 public class ProductController {
     private final ProductService prodService;
-   private final AuthClient authClient;
-
     @Autowired
-    public ProductController(ProductService prodService, AuthClient authClient) {
+    public ProductController(ProductService prodService) {
         this.prodService = prodService;
-        this.authClient = authClient;
-    }
+        }
 
 //    add product in db ***********************************************************************
     @PostMapping ("/add")
@@ -37,25 +34,7 @@ public class ProductController {
     }
 //Fetch all products from DB ********************************************************************
     @GetMapping("/get_products")
-    public ResponseEntity<List<ProductListDto>> getAllProd(@Nullable @RequestHeader("AUTH_TOKEN")String token,@Nullable @RequestHeader("USER_ID") Long userId){
-//  Checking token in DB ************************************
-           if(token==null||userId==null)
-            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-//Checking token is valid **********************************************
-        ValidateTokenResponseDto response = authClient.valid(token,userId);
-
-        if(response.getSessionStatus().equals(SessionStatus.INVALID))
-                return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
-
-// Checking the user have the permissions ********************************
-       boolean isAdmin = false;
-       for(Role role:response.getUserDto().getRoles()){
-           if (role.getRoleName().equals("ADMIN")) {
-               isAdmin = true;
-           }
-       }
-          if(!isAdmin)
-           return  new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+    public ResponseEntity<List<ProductListDto>> getAllProd(){
 
         List<ProductListDto> productList = prodService.getProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
