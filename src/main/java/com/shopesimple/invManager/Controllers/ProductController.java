@@ -1,8 +1,6 @@
 package com.shopesimple.invManager.Controllers;
 import com.shopesimple.invManager.DTO.*;
 import com.shopesimple.invManager.Service.ProductService;
-import com.shopesimple.invManager.ThirdParty.Security.AuthClient;
-import jakarta.annotation.Nullable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
