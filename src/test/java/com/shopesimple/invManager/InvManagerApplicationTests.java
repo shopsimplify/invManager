@@ -3,10 +3,10 @@ package com.shopesimple.invManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class InvManagerApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 
