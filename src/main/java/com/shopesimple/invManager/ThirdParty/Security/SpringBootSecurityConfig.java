@@ -14,16 +14,24 @@ public class SpringBootSecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/dashboard/product/get_products").hasAuthority("ADMIN")
-                        .anyRequest().authenticated())
+//                        .requestMatchers("/dashboard/product/get_products").hasAuthority("ADMIN")
+//                        .anyRequest().authenticated())
+                        .anyRequest().permitAll())
 
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
-                .oauth2ResourceServer(oauth2 -> oauth2
-                .jwt(jwt -> jwt
-                        .jwtAuthenticationConverter(new CustomAuthJwtConverter())
-                )
+                .oauth2ResourceServer(oauth2 -> {
+                    try {
+                        oauth2
+                        .jwt(jwt -> jwt
+                                .jwtAuthenticationConverter(new CustomAuthJwtConverter())
+                        )
+                                .disable().csrf()
+                                .disable().cors();
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
+                }
         );
-
         return http.build();
     }
 }

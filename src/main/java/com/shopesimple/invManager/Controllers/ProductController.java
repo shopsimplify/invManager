@@ -37,4 +37,10 @@ public class ProductController {
         List<ProductListDto> productList = prodService.getProducts();
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
+
+    @PostMapping("/find_product/{id}")
+    public ResponseEntity<ProductResponseDto> findProduct(@PathVariable ProductRequestDto prodId){
+        ProductResponseDto productResponseDto = prodService.findProduct(prodId.getId());
+        return new ResponseEntity<>(productResponseDto,HttpStatus.OK);
+    }
 }

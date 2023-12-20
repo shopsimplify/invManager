@@ -44,15 +44,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-		   <groupId>org.projectlombok</groupId>
-		   <artifactId>lombok</artifactId>
-		   <version>1.18.24</version>
-		   <scope>provided</scope>
-	    </dependency>
 
 
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+
+<!--		 https://mvnrepository.com/artifact/mysql/mysql-connector-java-->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
@@ -99,7 +94,6 @@
 			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
 
 		</dependency>
-
 
 	</dependencies>
 
