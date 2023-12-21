@@ -13,8 +13,6 @@ import java.util.Optional;
 @Service
 public class ProductService implements ProductServiceInterface{
     private final ProductRepo productRepo;
-
-    @Autowired
     public ProductService(ProductRepo prodRepo) {
         this.productRepo = prodRepo;
     }

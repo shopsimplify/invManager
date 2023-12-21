@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/dashboard/product")
 public class ProductController {
     private final ProductService prodService;
-    @Autowired
+
     public ProductController(ProductService prodService) {
         this.prodService = prodService;
         }
