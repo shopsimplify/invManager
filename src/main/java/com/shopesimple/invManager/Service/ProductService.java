@@ -1,9 +1,10 @@
 package com.shopesimple.invManager.Service;
 import com.shopesimple.invManager.DTO.ProductListDto;
-import com.shopesimple.invManager.DTO.ProductResponseDto;
+import com.shopesimple.invManager.DTO.ProductSetResponseDto;
 import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Repos.ProductRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -27,7 +28,8 @@ public class ProductService implements ProductServiceInterface{
     }
 
     @Override
-    public List<ProductListDto> getProducts() {
+    public List<ProductListDto> getAllProd() {
+//        Need to conevert into Page *******************
         List<Product> productList = productRepo.findAll();
         ProductListDto productListDto ;
         List<ProductListDto> productListDtos = new ArrayList<>();
@@ -42,15 +44,23 @@ public class ProductService implements ProductServiceInterface{
         return productListDtos;
     }
 
-public ProductResponseDto findProduct(Long prodId){
+public ProductSetResponseDto findProduct(Long prodId){
         Optional<Product> productOptional = productRepo.findById(prodId);
         Product product = productOptional.get();
-        ProductResponseDto productResponseDto = new ProductResponseDto();
+        ProductSetResponseDto productResponseDto = new ProductSetResponseDto();
         productResponseDto.setId(product.getId());
         productResponseDto.setProdName(product.getProdName());
         productResponseDto.setCategory(product.getCategory());
         productResponseDto.setDescription(product.getDescription());
         return productResponseDto;
 }
+
+
+    public Page<Product> getProducts(int numberOfProducts,int offset){
+        Page<Product> products=productRepo.findAll(
+                PageRequest.of(offset/numberOfProducts,numberOfProducts)
+        );
+        return  products;
+    }
 
 }
