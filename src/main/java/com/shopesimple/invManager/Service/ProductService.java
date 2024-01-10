@@ -1,18 +1,19 @@
 package com.shopesimple.invManager.Service;
 import com.shopesimple.invManager.DTO.ProductListDto;
+import com.shopesimple.invManager.DTO.ProductSetResponseDto;
 import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Repos.ProductRepo;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService implements ProductServiceInterface{
     private final ProductRepo productRepo;
-
-    @Autowired
     public ProductService(ProductRepo prodRepo) {
         this.productRepo = prodRepo;
     }
@@ -27,7 +28,8 @@ public class ProductService implements ProductServiceInterface{
     }
 
     @Override
-    public List<ProductListDto> getProducts() {
+    public List<ProductListDto> getAllProd() {
+//        Need to conevert into Page *******************
         List<Product> productList = productRepo.findAll();
         ProductListDto productListDto ;
         List<ProductListDto> productListDtos = new ArrayList<>();
@@ -42,6 +44,23 @@ public class ProductService implements ProductServiceInterface{
         return productListDtos;
     }
 
+public ProductSetResponseDto findProduct(Long prodId){
+        Optional<Product> productOptional = productRepo.findById(prodId);
+        Product product = productOptional.get();
+        ProductSetResponseDto productResponseDto = new ProductSetResponseDto();
+        productResponseDto.setId(product.getId());
+        productResponseDto.setProdName(product.getProdName());
+        productResponseDto.setCategory(product.getCategory());
+        productResponseDto.setDescription(product.getDescription());
+        return productResponseDto;
+}
 
+
+    public Page<Product> getProducts(int numberOfProducts,int offset){
+        Page<Product> products=productRepo.findAll(
+                PageRequest.of(offset/numberOfProducts,numberOfProducts)
+        );
+        return  products;
+    }
 
 }
