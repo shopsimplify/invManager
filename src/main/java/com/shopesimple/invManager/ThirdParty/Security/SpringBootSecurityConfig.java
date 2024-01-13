@@ -14,7 +14,7 @@ public class SpringBootSecurityConfig {
                 .authorizeHttpRequests(authorize -> authorize
                         .requestMatchers("/dashboard/product/get_products").hasAuthority("ADMIN")
                         .anyRequest().authenticated()
-                        .anyRequest().permitAll()
+//                        .anyRequest().permitAll()
                 )
                         .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
                         .oauth2ResourceServer(oauth2 -> {

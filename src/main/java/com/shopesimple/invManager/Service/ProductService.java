@@ -44,7 +44,7 @@ public class ProductService implements ProductServiceInterface{
         return productListDtos;
     }
 
-public ProductSetResponseDto findProduct(Long prodId){
+    public ProductSetResponseDto findProduct(Long prodId){
         Optional<Product> productOptional = productRepo.findById(prodId);
         Product product = productOptional.get();
         ProductSetResponseDto productResponseDto = new ProductSetResponseDto();
@@ -55,9 +55,8 @@ public ProductSetResponseDto findProduct(Long prodId){
         return productResponseDto;
 }
 
-
     public Page<Product> getProducts(int numberOfProducts,int offset){
-        Page<Product> products=productRepo.findAll(
+        Page<Product> products = productRepo.findAll(
                 PageRequest.of(offset/numberOfProducts,numberOfProducts)
         );
         return  products;
