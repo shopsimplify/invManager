@@ -1,6 +1,7 @@
 package com.shopesimple.invManager.Service;
 import com.shopesimple.invManager.DTO.ProductListDto;
 import com.shopesimple.invManager.DTO.ProductSetResponseDto;
+import com.shopesimple.invManager.Exception.NoProductExist;
 import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Repos.ProductRepo;
 import org.springframework.data.domain.Page;
@@ -44,8 +45,12 @@ public class ProductService implements ProductServiceInterface{
         return productListDtos;
     }
 
-    public ProductSetResponseDto findProduct(Long prodId){
+    public ProductSetResponseDto findProduct(Long prodId) throws NoProductExist {
         Optional<Product> productOptional = productRepo.findById(prodId);
+
+if(productOptional.isEmpty())
+    throw new NoProductExist("No such id in store");
+
         Product product = productOptional.get();
         ProductSetResponseDto productResponseDto = new ProductSetResponseDto();
         productResponseDto.setId(product.getId());

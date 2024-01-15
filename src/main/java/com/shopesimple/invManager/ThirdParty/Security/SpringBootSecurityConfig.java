@@ -16,15 +16,15 @@ public class SpringBootSecurityConfig {
                         .anyRequest().authenticated()
 //                        .anyRequest().permitAll()
                 )
-                        .oauth2ResourceServer((oauth2) -> oauth2.jwt(Customizer.withDefaults()))
+                        .oauth2ResourceServer((oauth2) ->
+                                oauth2.jwt(Customizer.withDefaults()))
                         .oauth2ResourceServer(oauth2 -> {
                           try {
                               oauth2
                                     .jwt(jwt -> jwt
-                                    .jwtAuthenticationConverter(new CustomAuthJwtConverter())
-                        )
-                                .disable().csrf()
-                                .disable().cors();
+                                                   .jwtAuthenticationConverter(new CustomAuthJwtConverter())
+                                         );
+
                     } catch (Exception e) {
                         throw new RuntimeException(e);
                     }

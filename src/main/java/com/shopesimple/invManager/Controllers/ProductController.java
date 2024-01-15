@@ -1,5 +1,6 @@
 package com.shopesimple.invManager.Controllers;
 import com.shopesimple.invManager.DTO.*;
+import com.shopesimple.invManager.Exception.NoProductExist;
 import com.shopesimple.invManager.Models.Product;
 import com.shopesimple.invManager.Service.ProductService;
 import org.springframework.data.domain.Page;
@@ -41,9 +42,9 @@ public class ProductController {
         return new ResponseEntity<>(productList, HttpStatus.OK);
     }
 
-    @PostMapping("/find_product/{id}")
-    public ResponseEntity<ProductSetResponseDto> findProduct(@PathVariable ProductSetRequestDto prodId){
-        ProductSetResponseDto productResponseDto = prodService.findProduct(prodId.getId());
+    @GetMapping("/find_product/{prodId}")
+    public ResponseEntity<ProductSetResponseDto> findProduct(@PathVariable Long prodId) throws NoProductExist {
+        ProductSetResponseDto productResponseDto = prodService.findProduct(prodId);
         return new ResponseEntity<>(productResponseDto,HttpStatus.OK);
     }
 
