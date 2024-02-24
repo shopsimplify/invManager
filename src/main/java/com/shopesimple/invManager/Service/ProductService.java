@@ -23,13 +23,11 @@ public class ProductService implements ProductServiceInterface{
         product.setProdName(prodName);
         product.setDescription(prodDescription);
         product.setCategory(category);
-
         productRepo.save(product);
     }
 
     @Override
     public List<ProductListDto> getAllProd() {
-//        Need to conevert into Page *******************
         List<Product> productList = productRepo.findAll();
         ProductListDto productListDto ;
         List<ProductListDto> productListDtos = new ArrayList<>();
@@ -48,7 +46,6 @@ public ProductSetResponseDto findProduct(Long prodId){
         Optional<Product> productOptional = productRepo.findById(prodId);
         Product product = productOptional.get();
         ProductSetResponseDto productResponseDto = new ProductSetResponseDto();
-        productResponseDto.setId(product.getId());
         productResponseDto.setProdName(product.getProdName());
         productResponseDto.setCategory(product.getCategory());
         productResponseDto.setDescription(product.getDescription());
@@ -57,7 +54,7 @@ public ProductSetResponseDto findProduct(Long prodId){
 
 
     public Page<Product> getProducts(int numberOfProducts,int offset){
-        Page<Product> products=productRepo.findAll(
+        Page<Product> products = productRepo.findAll(
                 PageRequest.of(offset/numberOfProducts,numberOfProducts)
         );
         return  products;

@@ -29,7 +29,8 @@ public class ProductController {
 
           ProductSetResponseDto productResponseDto = new ProductSetResponseDto();
           productResponseDto.setProdName(prodName);
-
+          productResponseDto.setCategory(category);
+          productResponseDto.setDescription(prodDescription);
         return productResponseDto;
     }
 //Fetch all products from DB ********************************************************************
@@ -50,6 +51,5 @@ public class ProductController {
     @GetMapping("/page_products")
     public ResponseEntity<Page<Product>> getProducts(@RequestBody GetProductRequestDto request){
         return ResponseEntity.of(Optional.ofNullable(prodService.getProducts(request.getNumberOfResults(), request.getOffset())));
-
     }
 }
