@@ -27,7 +27,6 @@ public class CustomAuthJwtConverter implements Converter<Jwt,AbstractAuthenticat
 
     private final JwtGrantedAuthoritiesConverter defaultGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
 
-
     @Override
     public AbstractAuthenticationToken convert(final Jwt source)
     {
